@@ -7,12 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/main.css">
     <title>GuestBook</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
 
     <?php
-    // debug($data);
+    //debug($data);
     ?>
 
     <div class="wrapper__content">
