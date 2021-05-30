@@ -18,26 +18,18 @@ td>i {
 ul{
     list-style: none;
     display: flex;
+    margin-bottom: 10px;
 }
 .error {
     color: red;
 }
 
 .wraper {
-    /* display: grid; */
-    /* min-height: 100vh; */
-    /* grid-template: minmax(10px, auto) 1fr minmax(10px, auto)/1fr; */
-    /* grid-template-areas: "header" "main" "footer"; */
-    /* grid-template-columns: 1fr auto; */
 
   }
 
 .wrapper__content{
-    /* display: grid; */
-    /* grid-area: main; */
-    /* grid-template-columns: 1fr auto; */
-    /* grid-gap: 20px; */
-    /* padding: 20px; */
+   
 }
 
 .wrapper__content{
@@ -48,14 +40,12 @@ ul{
 
     grid-gap: 20px;
     padding: 20px;
-
-    
 }
 
 .pagination li.active a {
     font-weight: bold;
-    color: red;
-
+    color: #9b9b9b;
+    border-bottom: 2px solid #9b9b9b;
 }
 
 .wrapper__maincontent {
@@ -70,8 +60,6 @@ ul{
 
 }
 
-
-
 .form {
     display: flex;
     flex-direction: column;
@@ -81,18 +69,18 @@ ul{
     margin: 10px 0;
     padding: 10px;
     border: unset;
-    border-bottom: 2px solid #e3e3e3;
+    border-bottom: 3px solid #e3e3e3;
     outline: none;
     transition: 0.5s;
     transition-property: border-bottom;
 }
 .input:hover {
-    border-bottom: 2px solid #bab7b7;
+    border-bottom: 3px solid #bab7b7;
 }
 .input__text {
     margin: 10px 0;
     padding: 10px;
-    height: 200px;
+    height: 150px;
     width: 100%;
     font-size: 14px;
    
@@ -115,7 +103,6 @@ ul{
     border-color: grey;
 }
 
-
 h1{
    text-align: center;
     font-size: 16px;
@@ -124,8 +111,8 @@ h2{
    display: inline-block;
    text-align: center;
     font-size: 15px;
+    margin-bottom: 10px;
 }
-
 
 .table__masage{
     /* border: 2px solid red; */
@@ -141,9 +128,11 @@ text-align:justify;
 border: solid;
 border-width: 0 0 1px 0 ;
 border-color: #fff;
+font-size: 12px;
 }
 th {
-    font-size: 16px;
+    text-align:center;
+    font-size: 14px;
     padding: 10px;
     border: 1px solid gray;
     border-width: 0 0 2px 0 
@@ -154,4 +143,12 @@ td{
 
 .select{
     display: inline-block;
+}
+.pagination li>a {
+    margin: 0 4px 0 4px;
+}
+.sort_by{
+}
+.sendmes{
+    color:#b9ee9a;
 }

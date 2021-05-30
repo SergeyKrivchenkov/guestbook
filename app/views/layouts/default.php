@@ -22,6 +22,7 @@
                 <h1>Отзывы наших пользователей</h1>
                 <table class="table__masage">
                     <tr>
+                        <th>Time message</th>
                         <th>User Name</th>
                         <th>e-mail</th>
                         <th>сообщение</th>
@@ -77,7 +78,7 @@
             <div class="select">
                 <form class="form__select_" action="" method="POST">
 
-                    <h2>Сортирвать по:</h2>
+                    <h2>Сортирвать по: </h2>
                     <select name="sort_by" id="sort_by" size="">
                         <!-- <option disabled>сортировать по:</option> -->
                         <option value="user_name" <?php echo $_POST['sort_by'] === 'user_name' ? "selected" : "" ?>> Имени пользователя </option>
@@ -92,39 +93,6 @@
                         <option value="desc" <?php echo $_POST['sort_order'] === 'desc' ? "selected" : "" ?>> По убыванию </option>
                     </select>
 
-                    <!-- <br>
-                    <h2>Сортирвать по имени пользователя</h2>
-                    <select name="nameadd" id="username" size="">
-                        <option value="adc_a-z"> adc a-z </option>
-                        <option value="adc_z-a"> adc z-a </option>
-                    </select>
-
-                    <br>
-                    <h2>Сортирвать по E-mail</h2>
-
-                    <select name="emailadd" id="emailadd" size="">
-                        <option value="gmail">Gmail</option>
-                        <option value="outlook">Outlook</option>
-                        <option value="mail">Mail</option>
-                    </select>
-                    <br>
-
-                    <h2>Сортирвать по дате добовления</h2>
-
-                    <select name="timeadd" id="timeadd" size="">
-                        <option value="new" <?php //echo $_POST['timeadd'] === 'new' ? "selected" : "" 
-                                            ?>>новые</option>
-                        <option value="old" <?php //echo $_POST['timeadd'] === 'old' ? "selected" : "" 
-                                            ?>>старые</option>
-                    </select>
-
-                    <br>
-                    <h2>Количество сообщений на странице</h2>
-                    <select name="msgcount" id="msgcount" size="">
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select> -->
 
                     <button type="submit" name="sort" class="form__button" value="sort">Сортировать</button>
                 </form>
