@@ -12,7 +12,6 @@ class MainController extends Controller
         if (isset($_POST['send']) && ($_POST['send'] == 'send')) {
 
             $validation = $this->checkValidation();
-            // debug($validation);
             $datames['validation'] = $validation;
 
             if ($validation['status'] === 'success') {
@@ -33,17 +32,13 @@ class MainController extends Controller
         }
 
         $this->view->render(
-            // 'index'
-            $datames,
-            $validation
-
+            $datames
         );
     }
 
     public function checkValidation()
     {
-        $nameErr = $emailErr = $websiteErr = "";
-        $name = $email = $comment = $website = "";
+        $name = $email = $text_massage = $website = "";
 
         function test_input($data)
         {
@@ -54,16 +49,12 @@ class MainController extends Controller
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
             $errors = [];
-            $success = '';
-
 
             if (empty($_POST["user_name"])) {
                 $errors['Имя:'] = "Введите имя";
             } else {
                 $name = test_input($_POST["user_name"]);
-                // check if name only contains letters and whitespace
                 if (!preg_match("/^[a-zA-Z0-9 ]*$/", $name)) {
                     $errors['Имя:'] = "Используйте только цифры, пробелы и буквы латинского алфавита.";
                 }
@@ -73,7 +64,6 @@ class MainController extends Controller
                 $errors['E-Mail:'] = "Введите почту";
             } else {
                 $email = test_input($_POST["email"]);
-                // проверка формата почты
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $errors['E-Mail:'] = "Не верный формат email.";
                 }
@@ -83,7 +73,6 @@ class MainController extends Controller
                 $website = "";
             } else {
                 $website = test_input($_POST["user_url"]);
-                // check if URL address syntax is valid (this regular expression also allows dashes in the URL)
                 if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
                     $errors['Веб-Сайт:'] = "Не верный URL.";
                 }
@@ -91,17 +80,12 @@ class MainController extends Controller
 
             if (empty($_POST["text_massage"])) {
                 $errors['Сообщение:'] = "Введите сообщение.";
-                $comment = "";
-            } else {
-                $comment = test_input($_POST["comment"]);
             }
 
             if (empty($_POST["g-recaptcha-response"])) {
                 $errors['reCaptcha:'] = "Captcha не заполнена.";
             } else {
                 $reCaptcha = $_POST["g-recaptcha-response"];
-                // ----------------------
-                $success = "success_recaptcha";
 
                 $url = "https://www.google.com/recaptcha/api/siteverify";
                 $ch = curl_init();
@@ -119,13 +103,9 @@ class MainController extends Controller
                 $data = json_decode($response);
 
                 if (!$data->success) {
-                    $errors['reCaptcha:'] = "Сделайте отметки.";
+                    $errors['reCaptcha:'] = "Неверный ответ.";
                 }
-                //---------------------------------------------
-                // if ($data->success) {
-                // }
             }
-
 
             if ($errors) {
                 return [
@@ -136,19 +116,8 @@ class MainController extends Controller
         }
         return [
             'status' => 'success',
-            'recaptcha' => $success,
         ];
     }
-
-    public function addCommentAction()
-    {
-        // echo 43434343;
-        $this->view->render('index', [
-            'data' => []
-        ]);
-    }
-
-
 
     public function getMes()
     {
@@ -157,8 +126,6 @@ class MainController extends Controller
         } else {
             $cur_page = 1;
         }
-        // $param_value = $_SESSION['user_ip'];
-        // $param_name = 'user_ip';
 
         if (isset($_POST['sort_by'])) {
             $sort_by = $_POST['sort_by'];
@@ -173,7 +140,6 @@ class MainController extends Controller
         }
 
         $count_on_page = 25;
-        // $datas = $this->model->getRecords();
 
         $comments = $this->model->getLimit($cur_page, $count_on_page, $sort_by, $sort_order);
         $arr['comments'] = $comments;

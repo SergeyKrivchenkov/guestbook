@@ -17,13 +17,6 @@ class View
         $layout = "app/views/layouts/{$this->layout}.php";
         $view = "app/views/{$this->path}.php";
 
-        // if ($view) {
-        //     $view = "app/views/{$this->route['controller']}/{$view}.php";
-        // } else {
-        //     $wiev = "app/views/{$this->path}.php";
-        // }
-
-
         if (file_exists($view)) {
             ob_start();
             require_once $view;

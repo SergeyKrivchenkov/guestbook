@@ -11,11 +11,6 @@
 </head>
 
 <body>
-
-    <?php
-    //debug($data);
-    ?>
-
     <div class="wrapper__content">
         <div class="wrapper__maincontent">
             <div class="wrapper__table">
@@ -50,16 +45,11 @@
             <!------------ pagination П А Г И Н А Т О Р----------->
 
             <?php
-
-            // $products = $data['products']; // как бы распарсили массив
             $count_products = $data['comments'][0]['count']; // сюда запишется кол-во сообщений в БД
-            // echo $count_products;
 
             $count_on_page = $data['count_on_page'];
             $cour_page = $data['cur_page'];
-
-            $count_pages = ceil($count_products / $count_on_page); // узнаем кол-во товаров т.е. кол-во товаров делим на кол-во товара на стр.
-
+            $count_pages = ceil($count_products / $count_on_page);
             ?>
 
             <ul class="pagination ">
@@ -72,7 +62,9 @@
                     <!-- здесь вставляем $i из оператора for для автоматизации нумерации пагинатора-->
                     <li class="waves-effect <?= $class ?>"><a href="?page=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
-                <!-- <li class="waves-effect"><a href="?page=3">&#9658;</a></li> -->
+
+                <!-- <li class="waves-effect"><a href="?page=<?= $next_page; ?>">&#9658;</a></li> -->
+
             </ul>
 
             <div class="select">

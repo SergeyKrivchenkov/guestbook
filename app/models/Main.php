@@ -4,31 +4,14 @@ namespace app\models;
 
 use app\core\Model;
 
-
-// if (empty($user_name)) {
-//     echo ('Заполните поле: ' . '<b> Имя </b>');
-// }
-
-
 class Main extends Model
 {
-    /*
-    public function getRecords()
-    {
-        $allcomment = $this->db->queryALL('comments');
-        // debug($allcomment);
-        return $this->getCountMes($allcomment);
-    }
-*/
-
-
     public function getCountMes($messages)
     {
         foreach ($messages as $key => $value) {
             $count = $this->db->queryCountMes($value['user_ip']);
             $messages[$key]['count'] = $count;
         }
-        // debug($allcomment);
         return  $messages;
     }
 
@@ -36,8 +19,6 @@ class Main extends Model
     {
         return $this->db->insert('comments', $data);
     }
-
-    // ------------------------------------------------------------
 
     public function getLimit($cur_page, $count_on_page = 25, $sort_by, $sort_order)
     {

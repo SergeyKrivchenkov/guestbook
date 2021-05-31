@@ -53,10 +53,6 @@ class Db
 
     public function getLimitMes($table, $from, $count_on_page, $sort_by, $sort_order)
     {
-        //debug($time_sort);
-        // $keys = array_keys($param);
-        // $param_name = $keys[0]; // здесь в $param_name будет записано cat_id
-        // $param_value = $param[$param_name];
 
         $stmt = $this->db->prepare("SELECT * FROM $table ORDER BY {$sort_by} {$sort_order} LIMIT {$from}, {$count_on_page}");
         $stmt->execute(); // здесь в execute() ничего нет так как нет знаков ?
