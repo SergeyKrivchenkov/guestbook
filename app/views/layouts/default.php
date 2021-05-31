@@ -63,7 +63,7 @@
             ?>
 
             <ul class="pagination ">
-                <li class="disabled "><a href="#!">&#9668;</a></li>
+                <li class="disabled "><a href="/">&#9668;&#9668;</a></li>
 
                 <?php for ($i = 1; $i <= $count_pages; $i++) : // здесь не забываем о знаке : после оператора вместо скобки
                 ?>
@@ -72,7 +72,7 @@
                     <!-- здесь вставляем $i из оператора for для автоматизации нумерации пагинатора-->
                     <li class="waves-effect <?= $class ?>"><a href="?page=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
-                <li class="waves-effect"><a href="#!">&#9658;</a></li>
+                <!-- <li class="waves-effect"><a href="?page=3">&#9658;</a></li> -->
             </ul>
 
             <div class="select">

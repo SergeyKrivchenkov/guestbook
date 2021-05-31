@@ -12,6 +12,7 @@ class MainController extends Controller
         if (isset($_POST['send']) && ($_POST['send'] == 'send')) {
 
             $validation = $this->checkValidation();
+            // debug($validation);
             $datames['validation'] = $validation;
 
             if ($validation['status'] === 'success') {
@@ -30,14 +31,12 @@ class MainController extends Controller
                 }
             }
         }
-        //$this->checkValidation();
-
-
 
         $this->view->render(
             // 'index'
             $datames,
             $validation
+
         );
     }
 
@@ -57,6 +56,8 @@ class MainController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $errors = [];
+            $success = '';
+
 
             if (empty($_POST["user_name"])) {
                 $errors['Имя:'] = "Введите имя";
@@ -96,9 +97,11 @@ class MainController extends Controller
             }
 
             if (empty($_POST["g-recaptcha-response"])) {
-                $errors['reCaptcha:'] = "ReCaptcha is not checked.";
+                $errors['reCaptcha:'] = "Captcha не заполнена.";
             } else {
                 $reCaptcha = $_POST["g-recaptcha-response"];
+                // ----------------------
+                $success = "success_recaptcha";
 
                 $url = "https://www.google.com/recaptcha/api/siteverify";
                 $ch = curl_init();
@@ -116,22 +119,24 @@ class MainController extends Controller
                 $data = json_decode($response);
 
                 if (!$data->success) {
-                    $errors['reCaptcha:'] = "ReCaptcha is not solved.";
+                    $errors['reCaptcha:'] = "Сделайте отметки.";
                 }
+                //---------------------------------------------
+                // if ($data->success) {
+                // }
             }
 
-            // if (empty($_POST["user_name"]) || empty($_POST["email"]) || empty($_POST["user_url"]) || empty($_POST["comment"])) {
-            // }
 
             if ($errors) {
                 return [
                     'status' => 'error',
-                    'errors' => $errors
+                    'errors' => $errors,
                 ];
             }
         }
         return [
-            'status' => 'success'
+            'status' => 'success',
+            'recaptcha' => $success,
         ];
     }
 
@@ -167,7 +172,7 @@ class MainController extends Controller
             $sort_order = 'DESC';
         }
 
-        $count_on_page = 5;
+        $count_on_page = 25;
         // $datas = $this->model->getRecords();
 
         $comments = $this->model->getLimit($cur_page, $count_on_page, $sort_by, $sort_order);
